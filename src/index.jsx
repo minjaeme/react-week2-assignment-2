@@ -10,25 +10,26 @@ function Todo({ value }) {
   )
 }
 
-function Input( {handleClick} ) {
-  console.log(handleClick);
+function Input( {value, handleClick} ) {
+  console.log("ee", handleClick)
   return(
     <form onSubmit={handleClick}>
         <label>
-          <input type="text" onChange={handleClick} />
+          <input type="text" />
         </label>
         <input type="submit" value="추가" />
       </form>
   )
 }
 
-function Page({ todoList, handleClick, }) {
-  console.log("list", todoList, handleClick );
+function Page({ todoList, onSubmit, }) {
+  console.log("list", todoList, onSubmit );
   return (
     <div>
       <h1>To-do</h1>
       <Input 
-        onSubmit={handleClick}
+        value={"tes"}
+        handleClick={onSubmit}
       />
       { todoList.length > 0 ?
         <p>
@@ -52,7 +53,10 @@ function App() {
 
   const {todoList, } = state;
 
-  function handleClick(todo) {
+  function handleClick(e) {
+
+    console.log('You clicked submit.');
+    e.preventDefault();
     setState((todoList) => ({
       todoList: [...todoList, todo]
     }))
